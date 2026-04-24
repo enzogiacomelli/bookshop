@@ -5,6 +5,8 @@ namespace bookshop_backend.Models
 {
     public class Book
     {
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         [Required]
         public string Title { get; set; }

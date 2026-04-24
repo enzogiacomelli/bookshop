@@ -2,10 +2,10 @@
 
 namespace bookshop_backend.Repositories
 {
-    public class IBookRepository
+    public interface IBookRepository
     {
-        public async Task<Book> GetByIdAsync(string id);
+        Task<Book> GetByIdAsync(string id);
 
-        public async Task<int> CreateAsync(Book book);
+        Task<int> CreateAsync(Book book);
     }
 }

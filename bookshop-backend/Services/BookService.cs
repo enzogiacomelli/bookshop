@@ -6,7 +6,8 @@ namespace bookshop_backend.Services
 {
     public class BookService : IBookService
     {
-        private readonly IBookRepository _repository;
+        private readonly IBookRepository _repository;  //o service chama o repository, o repository chama o banco de dados
+
         public BookService(IBookRepository repository) 
         {
             _repository = repository;
@@ -15,12 +16,18 @@ namespace bookshop_backend.Services
         {
             var book = new Book
             {
-                Id = 0, //verificar se o id esta com auto increment
-                Title = createBookDto.Title,
+                //Id = 0, //verificar se o id esta com auto increment
+                /*Title = createBookDto.Title,
                 Author = createBookDto.Author,
                 Price = createBookDto.Price,
                 CategoryId = createBookDto.CategoryId,
-                Description = createBookDto.Description
+                Description = createBookDto.Description  */
+
+                Title = "teste",
+                Author = "teste",
+                Price = 10.0m,
+                CategoryId = 1,
+                Description = "teste"
             };
 
             _repository.CreateAsync(book);
