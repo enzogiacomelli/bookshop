@@ -16,18 +16,11 @@ namespace bookshop_backend.Services
         {
             var book = new Book
             {
-                //Id = 0, //verificar se o id esta com auto increment
-                /*Title = createBookDto.Title,
+                Title = createBookDto.Title,
                 Author = createBookDto.Author,
                 Price = createBookDto.Price,
                 CategoryId = createBookDto.CategoryId,
-                Description = createBookDto.Description  */
-
-                Title = "teste",
-                Author = "teste",
-                Price = 10.0m,
-                CategoryId = 1,
-                Description = "teste"
+                Description = createBookDto.Description
             };
 
             _repository.CreateAsync(book);
