@@ -18,12 +18,13 @@ namespace bookshop_backend.Controllers
 
 
         [HttpPost]
+        [Route("create")]
         public IActionResult Post(CreateBookDto dto)
         {
             try
             {
                 _bookService.CreateBook(dto);
-                return Ok();
+                return Created();
             }
             catch (Exception ex)
             {

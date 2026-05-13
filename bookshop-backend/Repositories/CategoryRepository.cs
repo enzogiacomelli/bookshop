@@ -26,5 +26,12 @@ namespace bookshop_backend.Repositories
             var query = "SELECT * FROM Categories WHERE Id = @Id";
             return await _connection.QuerySingleOrDefaultAsync<Category>(query, new { Id = id });
         }
+
+        public async Task<List<Category>> GetAllAsync()
+        {
+            var query = "SELECT * FROM Categories";
+            var categories = await _connection.QueryAsync<Category>(query);
+            return categories.ToList();
+        }
     }
 }

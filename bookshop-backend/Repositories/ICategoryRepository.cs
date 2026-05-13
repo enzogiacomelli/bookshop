@@ -7,5 +7,7 @@ namespace bookshop_backend.Repositories
         Task <Category> GetByIdAsync(string id);
 
         Task<int> CreateAsync(Category category);
+
+        Task<List<Category>> GetAllAsync();
     }
 }

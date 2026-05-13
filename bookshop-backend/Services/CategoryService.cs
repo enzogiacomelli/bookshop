@@ -23,5 +23,14 @@ namespace bookshop_backend.Services
             _categoryRepository.CreateAsync(category);
             return category;
         }
+
+        public List<Category> GetAllCategories()
+        {
+            var categories = new List<Category>();
+            categories = _categoryRepository.GetAllAsync().Result;
+
+            return categories;
+        }
+
     }
 }
