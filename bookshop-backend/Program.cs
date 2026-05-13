@@ -18,6 +18,9 @@ builder.Services.AddScoped<IDbConnectionFactory, DbConnectionFactory>();
 builder.Services.AddScoped<IBookRepository, BookRepository>();
 builder.Services.AddScoped<IBookService, BookService>();
 
+builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+builder.Services.AddScoped<ICategoryService, CategoryService>();
+
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
