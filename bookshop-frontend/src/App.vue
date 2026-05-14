@@ -1,20 +1,29 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+
+import { inject } from 'vue'
+
+
+const books = inject('books')
+
+</script>
+
 
 <template>
 
   <div>
-    <h1>titulo teste</h1>
+    <h1>Bookshop</h1>
     <p>
-      texto
+      Livros disponiveis:
     </p>
 
-    <List>
-      <li>item 1</li>
-      <li>item 2</li>
-      <li>item 3</li>
-    </List>
+    <ul v-for="book in books">
+      <li>Titulo: {{book.title}}</li>
+      <li>Preço: {{book.price}}</li>
+      <li>Descrição: {{book.description}}</li>
+      <br>
+    </ul>
   </div>
-  
+
 </template>
 
 <style scoped></style>
