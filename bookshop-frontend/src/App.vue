@@ -1,8 +1,6 @@
 <script setup lang="ts">
 
 import { inject } from 'vue'
-
-
 const books = inject('books')
 
 </script>
@@ -10,18 +8,23 @@ const books = inject('books')
 
 <template>
 
-  <div>
+  <div class="page">
     <h1>Bookshop</h1>
     <p>
       Livros disponiveis:
     </p>
 
-    <ul v-for="book in books">
-      <li>Titulo: {{book.title}}</li>
-      <li>Preço: {{book.price}}</li>
-      <li>Descrição: {{book.description}}</li>
-      <br>
-    </ul>
+    <div class="container-line">
+      <div class="book-box" v-for="book in books">
+        <span>Titulo: {{ book.title }}</span> <br>
+        <span>Preço: {{ book.price }}</span> <br>
+        <button @click="book.showMoreInfo = !book.showMoreInfo">Mais informações</button>
+        <div class="description-box" v-if="book.showMoreInfo">
+          <span>Autor: {{ book.author }}</span> <br>
+          <span>Descrição: {{ book.description }}</span> <br>
+        </div>
+      </div>
+    </div>
   </div>
 
 </template>

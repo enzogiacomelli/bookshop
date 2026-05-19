@@ -1,0 +1,36 @@
+.book-box{
+    width: 200px;
+    height: 200px;
+    background-color: rgb(231, 224, 224);
+    border: 2px solid;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.description-box{
+    width: 150px;
+    height: 100px;
+    background-color: rgb(231, 224, 224);
+    border: 2px solid;
+    border-radius: 8px;
+    padding: 20px;
+    margin-top: 10px;
+}
+
+.container-line{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.page{
+    margin: 10px;
+}
+
+.button{
+  width: 95px;
+  height: 45px;
+  border: 2px;
+}
