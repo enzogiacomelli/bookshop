@@ -8,6 +8,7 @@
     margin-bottom: 10px;
     margin-left: 10px;
     margin-right: 10px;
+    margin-top: 10px;
 }
 
 .description-box{
@@ -29,8 +30,13 @@
     margin: 10px;
 }
 
-.button{
-  width: 95px;
-  height: 45px;
-  border: 2px;
+.container-buttons{
+    display: flex;
+    gap: 10px;
+}
+
+.small-button{
+    padding: 8px 16px;
+    cursor: pointer;
+
 }

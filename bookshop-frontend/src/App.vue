@@ -14,6 +14,15 @@ const books = inject('books')
       Livros disponiveis:
     </p>
 
+    <p>
+      Clique no botão "Mais informações" para ver mais detalhes sobre cada livro.
+    </p>
+
+    <div class="container-buttons"> 
+      <button class="small-button" @click="books.forEach(book => book.showMoreInfo = true)">Exibir detalhes de todos os livros</button>
+      <button class="small-button" @click="books.forEach(book => book.showMoreInfo = false)">Esconder detalhes de todos os livros</button>
+    </div>
+
     <div class="container-line">
       <div class="book-box" v-for="book in books">
         <span>Titulo: {{ book.title }}</span> <br>
