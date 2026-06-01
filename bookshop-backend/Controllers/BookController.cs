@@ -31,5 +31,38 @@ namespace bookshop_backend.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        [HttpGet]
+        [Route("get-all")]
+        public async Task<IActionResult> GetAll()
+        {
+            try
+            {
+                var books = await _bookService.GetAllAsync();
+                if(books == null) return NotFound("Nenhum livro encontrado");
+                return Ok(books);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+
+        }
+
+        [HttpGet]
+        [Route("get/{id}")]
+        public async Task<IActionResult> GetById(int id)
+        {
+            try
+            {
+                var book = await _bookService.GetByIdAsync(id);
+                if (book == null) return NotFound("Livro não encontrado");
+                return Ok(book);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }

@@ -31,20 +31,39 @@ namespace bookshop_backend.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
         [HttpGet]
         [Route("get-all")]
-        public IActionResult GetAll()
+        public async Task<IActionResult> GetAll()
         {
             try
             {
                 var categories = new List<Category>();
-                categories = _categoryService.GetAllCategories();
+                categories = await _categoryService.GetAllAsync();
+                if(categories == null) return NotFound("Nenhuma categoria encontrada");
 
                 return Ok(categories);
             }
             catch (Exception ex)
             {
                 return NotFound(ex.Message);
+            }
+        }
+
+        [HttpGet]
+        [Route("get/{id}")]
+        public async Task<IActionResult> GetById(int id)
+        {
+            try
+            {
+                var category = await _categoryService.GetByIdAsync(id);
+                if (category == null) return NotFound("Categoria não encontrada");
+
+                return Ok(category);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
             }
         }
     }

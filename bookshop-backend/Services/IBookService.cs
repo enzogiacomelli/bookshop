@@ -6,5 +6,7 @@ namespace bookshop_backend.Services
     public interface IBookService
     {
         Book CreateBook(CreateBookDto createBookDto);
+        Task<BookDto> GetByIdAsync(int id);      
+        Task<List<BookDto>> GetAllAsync();
     }
 }

@@ -4,7 +4,7 @@ namespace bookshop_backend.Repositories
 {
     public interface ICategoryRepository
     {
-        Task <Category> GetByIdAsync(string id);
+        Task <Category> GetByIdAsync(int id);
 
         Task<int> CreateAsync(Category category);
 

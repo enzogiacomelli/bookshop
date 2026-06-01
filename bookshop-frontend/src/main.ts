@@ -2,6 +2,13 @@ import { createApp, reactive } from 'vue'
 import App from './App.vue'
 import './style.css';
 
+interface Book {
+  title: string;
+  price: number;
+  description: string;
+  author: string;
+}
+
 var books = reactive([
   {
     title: 'The Great Gatsby',

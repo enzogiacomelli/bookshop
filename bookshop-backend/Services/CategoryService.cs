@@ -1,6 +1,7 @@
 ﻿using bookshop_backend.DTOs;
 using bookshop_backend.Models;
 using bookshop_backend.Repositories;
+using System.Linq;
 
 namespace bookshop_backend.Services
 {
@@ -24,13 +25,19 @@ namespace bookshop_backend.Services
             return category;
         }
 
-        public List<Category> GetAllCategories()
+        public async Task<List<Category>> GetAllAsync()
         {
             var categories = new List<Category>();
-            categories = _categoryRepository.GetAllAsync().Result;
+            categories = await _categoryRepository.GetAllAsync();
 
             return categories;
         }
 
+        public async Task<Category> GetByIdAsync(int id)
+        {
+           var category = await _categoryRepository.GetByIdAsync(id);
+            if (category == null) return null;
+            return category;
+        }
     }
 }

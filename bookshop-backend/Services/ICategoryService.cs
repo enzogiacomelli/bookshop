@@ -7,6 +7,8 @@ namespace bookshop_backend.Services
     {
         Category CreateCategory(CreateCategoryDto createCategoryDto);
 
-        List<Category> GetAllCategories();
+        Task<List<Category>> GetAllAsync();
+
+        Task<Category> GetByIdAsync(int id);
     }
 }

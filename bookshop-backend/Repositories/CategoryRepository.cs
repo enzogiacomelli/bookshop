@@ -21,7 +21,7 @@ namespace bookshop_backend.Repositories
 
         }
 
-        public async Task<Category> GetByIdAsync(string id)
+        public async Task<Category> GetByIdAsync(int id)
         {
             var query = "SELECT * FROM Categories WHERE Id = @Id";
             return await _connection.QuerySingleOrDefaultAsync<Category>(query, new { Id = id });

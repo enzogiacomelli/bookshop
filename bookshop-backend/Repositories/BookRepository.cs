@@ -14,10 +14,17 @@ namespace bookshop_backend.Repositories
             _connection = factory.CreateConnection();
         }
 
-        public async Task<Book> GetByIdAsync(string id)
+        public async Task<Book> GetByIdAsync(int id)
         {
             var query = "SELECT * FROM Books WHERE Id = @Id";
             return await _connection.QuerySingleOrDefaultAsync<Book>(query, new { Id = id });
+        }
+
+        public async Task<List<Book>> GetAllAsync()
+        {
+            var query = "SELECT * FROM Books";
+            var books = await _connection.QueryAsync<Book>(query);
+            return books.ToList();
         }
 
         public async Task<int> CreateAsync(Book book)

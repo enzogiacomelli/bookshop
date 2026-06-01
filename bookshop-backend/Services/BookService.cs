@@ -26,5 +26,35 @@ namespace bookshop_backend.Services
             _repository.CreateAsync(book);
             return book;
         }
+
+        public async Task<BookDto> GetByIdAsync(int id)
+        {
+            var book = await _repository.GetByIdAsync(id);
+            if (book == null) return null;
+            var bookDto = new BookDto
+            {
+                Id = book.Id,
+                Title = book.Title,
+                Author = book.Author,
+                Price = book.Price,
+                CategoryId = book.CategoryId,
+                Description = book.Description
+            };
+            return bookDto;
+        }
+
+        public async Task<List<BookDto>> GetAllAsync()
+        {
+            var books = await _repository.GetAllAsync();
+            return books.Select(book => new BookDto
+            {
+                Id = book.Id,
+                Title = book.Title,
+                Author = book.Author,
+                Price = book.Price,
+                CategoryId = book.CategoryId,
+                Description = book.Description
+            }).ToList();
+        }
     }
 }
