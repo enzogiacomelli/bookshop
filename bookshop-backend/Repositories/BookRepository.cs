@@ -16,14 +16,41 @@ namespace bookshop_backend.Repositories
 
         public async Task<Book> GetByIdAsync(int id)
         {
-            var query = "SELECT * FROM Books WHERE Id = @Id";
-            return await _connection.QuerySingleOrDefaultAsync<Book>(query, new { Id = id });
+            var query = @"
+                SELECT Books.Id, Books.Title, Books.Author, Books.Price, 
+                       Books.CategoryId, Books.Description,
+                       Categories.Id, Categories.Name
+                FROM Books 
+                JOIN Categories ON Books.CategoryId = Categories.Id 
+                WHERE Books.Id = @Id";
+
+            var books = await _connection.QueryAsync<Book, Category, Book>(query, (book, category) =>
+            {
+                book.Category = category;
+                return book;
+            },
+            new { Id = id },
+            splitOn: "Id"
+            );
+
+            return books.FirstOrDefault();
         }
 
         public async Task<List<Book>> GetAllAsync()
         {
-            var query = "SELECT * FROM Books";
-            var books = await _connection.QueryAsync<Book>(query);
+            var query = @"
+                SELECT Books.Id, Books.Title, Books.Author, Books.Price, 
+                       Books.CategoryId, Books.Description,
+                       Categories.Id, Categories.Name
+                FROM Books 
+                JOIN Categories ON Books.CategoryId = Categories.Id";
+            var books = await _connection.QueryAsync<Book, Category, Book>(query, (book, category) =>
+            {
+                book.Category = category;
+                return book;
+            }, 
+            splitOn: "Id"
+            );
             return books.ToList();
         }
 

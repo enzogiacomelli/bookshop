@@ -11,6 +11,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+
+
 //dapper
 builder.Services.AddScoped<IDbConnectionFactory, DbConnectionFactory>();
 
@@ -28,6 +30,14 @@ builder.Services.AddSwaggerGen();
 
 
 var app = builder.Build();
+
+// Aplicar migrações automaticamente na inicialização
+using (var scope = app.Services.CreateScope())
+{
+    var dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+    //dbContext.Database.EnsureDeleted(); //deleta o banco
+    dbContext.Database.Migrate(); //executa migrations pendentes, criando o banco se necessário
+}
 
 
 if (app.Environment.IsDevelopment())

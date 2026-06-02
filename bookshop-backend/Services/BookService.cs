@@ -38,7 +38,12 @@ namespace bookshop_backend.Services
                 Author = book.Author,
                 Price = book.Price,
                 CategoryId = book.CategoryId,
-                Description = book.Description
+                Description = book.Description,
+                Category = new CategoryDto
+                {
+                    Id = book.Category.Id,
+                    Name = book.Category.Name
+                }
             };
             return bookDto;
         }
@@ -53,7 +58,12 @@ namespace bookshop_backend.Services
                 Author = book.Author,
                 Price = book.Price,
                 CategoryId = book.CategoryId,
-                Description = book.Description
+                Description = book.Description,
+                Category = new CategoryDto
+                {
+                    Id = book.Category.Id,
+                    Name = book.Category.Name
+                }
             }).ToList();
         }
     }
